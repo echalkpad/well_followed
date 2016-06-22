@@ -1,0 +1,22 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongo": {
+    "host": "localhost",
+    "database": "wellfollowed",
+    "name": "mongo",
+    "connector": "mongodb"
+  },
+  "experimentStorage": {
+    "name": "experimentStorage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "/srv/wellfollowed/storage/experiment"
+  },
+  "email": {
+    "name": "email",
+    "connector": "mail"
+  }
+}

@@ -1,0 +1,105 @@
+<div class="container-fluid bg-warning" style="margin-top: -20px; margin-bottom: 20px; border-bottom: 1px solid #e7e7e7"
+     ng-if="isInitiator">
+    <h5 class="text-warning">
+        <span class="glyphicon glyphicon-wrench"></span> Vous êtes l'organisateur/trice de cette expérience.
+    </h5>
+    <form name="experimentForm">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-3">
+                <div class="form-horizontal">
+                    <div class="form-group has-feedback"
+                         ng-class="{'has-error': experimentForm.experimentName.$invalid}">
+                        <label class="col-md-5 control-label" for="experimentName">Nom de l'expérience</label>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control"
+                                   name="experimentName"
+                                   ng-model="experiment.name"
+                                   id="experimentName"
+                                   required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="experiment.isPublic"/> Rendre
+                        l'expérience publique
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center padding-bottom">
+                <button class="btn btn-primary" ng-if="experimentForm.$dirty"
+                        ng-disabled="experimentForm.$invalid"
+                ng-click="updateExperiment(experimentForm)">
+                    Sauvegarder
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="text-center">
+    <div class="container">
+        <div ng-messages="experimentError">
+            <p ng-message="unauthorized">
+                Votre établissement n'est pas autorisé à suivre l'expérience courrante.
+                <a ui-sref="experimentHistory" class="btn btn-primary">Historique</a>
+            </p>
+            <div ng-message="notFound">
+                <p>Aucune expérience n'est en cours pour le moment.</p>
+                <p ng-if="nextEvent">
+                    Prochain évènement planifié le {{nextEvent.start | date:'dd/MM/yyyy à H:mm'}}.
+                </p>
+                <a ui-sref="experimentHistory" class="btn btn-primary">Historique</a>
+            </div>
+            <div ng-message="notStarted">
+                <div>
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control"
+                                   placeholder="Nom de l'expérience"/>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"/> Rendre l'expérience publique
+                            </label>
+                        </div>
+                        <wf-loader-button is-loading="isStartingExperiment" click-callback="startExperiment()"
+                                          options="{'btnClass': 'primary'}">
+                            Commencer l'expérience
+                        </wf-loader-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    <wf-loader ng-if="experiment === null"></wf-loader>
+</div>
+<div ng-if="experiment !== null && experiment !== false">
+    <div class="container">
+        <div class="col-md-6">
+            <h4>Experience : {{experiment.name}}</h4>
+            </div>
+        <div class="col-md-6 text-right">
+            <a class="btn btn-primary" ui-sref="experimentHistory">Historique</a>
+        </div>
+    </div>
+    <div class="grey-section grey-border-bottom">
+        <div class="container-fluid">
+            <p class="text-center">Les capteurs seront affichés dynamiquement dès qu'ils seront connectés.</p>
+            <div class="row">
+                <div ng-repeat="sensor in sensors">
+                    <wf-sensor sensor="sensor" style="display: block" class="col-md-6"></wf-sensor>
+                </div>
+            </div>
+            <div class="row">
+                <wf-video-stream style="display: block" class="col-md-6"></wf-video-stream>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

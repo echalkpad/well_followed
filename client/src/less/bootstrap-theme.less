@@ -1,0 +1,172 @@
+@import './variables.less';
+
+body {
+  background-color: @bg;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: @primary;
+}
+
+.navbar-inverse {
+  background-color: @navbar-bg;
+  border-color: @navbar-border;
+}
+
+.navbar-brand img {
+  margin-top: -5px;
+  max-height: 20px;
+}
+
+.navbar-brand {
+  height: 40px;
+}
+
+.navbar-inverse .navbar-brand {
+  color: @light;
+  background: @brand-bg;
+  border-right: 2px solid @primary;
+  -webkit-transition: color 0.2s, background-color 0.4s;
+  transition: color 0.2s, background-color 0.4s;
+}
+
+.navbar-inverse .navbar-brand:hover {
+  color: @light;
+  background: @primary;
+}
+
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-text {
+  color: darken(@light, 10%);
+}
+
+
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover {
+  color: @light;
+}
+
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover {
+  background-color: @navbar-border;
+  color: @light;
+}
+
+.navbar-inverse .navbar-nav>li.active>a,
+.navbar-inverse .navbar-nav>li.active>a:focus,
+.navbar-inverse .navbar-nav>li.active>a:hover,
+.navbar-inverse .navbar-nav>li.open>a,
+.navbar-inverse .navbar-nav>li.open>a:focus,
+.navbar-inverse .navbar-nav>li.open>a:hover,
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover {
+  border-color: @navbar-border;
+  background-color: @navbar-border;
+}
+
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: @navbar-border;
+}
+
+.navbar-inverse .navbar-toggle {
+  border-color: @primary;
+}
+
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+  color: @light;
+  background-color: @primary;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: @light;
+}
+
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: darken(@light, 10%);
+  }
+
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+    color: @light;
+  }
+}
+
+.panel-heading {
+  border-radius: 0;
+}
+
+.panel-default {
+  border-color: transparent;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.panel-default .panel-footer {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.panel-default>.panel-heading {
+  color: @brand-bg;
+  background-color: transparent;
+  border-color: @medium-grey;
+}
+
+.panel-default>.panel-body {
+  background-color: transparent;
+}
+
+.panel {
+  min-height: 132px;
+  border-radius: 0;
+}
+
+.btn-link.btn-link-danger {
+  color: #a94442;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+  vertical-align: middle;
+}
+
+.navbar {
+  min-height: 40px;
+}
+
+.nav>li>a {
+  padding: 10px 15px;
+  transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+}
+
+.navbar-toggle {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.btn:focus,
+.btn:active,
+button:focus,
+button:active {
+  outline: none;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th{
+  border-color: @medium-grey;
+}

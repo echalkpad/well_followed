@@ -1,0 +1,169 @@
+@import "./variables";
+@import "https://fonts.googleapis.com/css?family=Roboto:400,300";
+
+.form-error-message {
+  color: #a94442;
+  padding: 5px;
+}
+
+.jumbotron-no-margin {
+  margin-top: -20px;
+}
+
+.jumbotron-no-border-radius {
+  border-radius: 0;
+}
+
+.jumbotron {
+  color: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: #3b536b;
+
+}
+
+.jumbotron h1, h2, h3, h4, h5, h6 {
+  margin-top: 10px;
+}
+
+.login-container,
+.logo-container {
+  width: 520px;
+  margin: 20px auto 0 auto;
+}
+
+.login-container .login-form,
+.login-container wf-error-alerts {
+  width: 350px;
+  margin: auto;
+  display: block;
+}
+
+.logo-container {
+  text-align: center;
+}
+
+.btn {
+  outline: none;
+}
+
+// dummy
+.x.axis line {
+  shape-rendering: auto;
+}
+
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+
+.loader {
+  margin: auto;
+  width: 80px;
+  height: 70px;
+  font-size: 30px;
+  text-align: center;
+  //background: url('../img/ajax-loader.gif') center top no-repeat;
+}
+
+td a {
+  display: block;
+}
+
+.top-space {
+  margin-top: 10px;
+}
+
+wf-loader {
+  display: block;
+}
+
+.ng-enter,
+.ng-move {
+  -webkit-transition: 0.2s linear all;
+  transition: 0.2s linear all;
+  opacity: 0;
+}
+
+.ng-enter.ng-enter-active,
+.ng-move.ng-move-active {
+  opacity: 1;
+}
+
+.ng-leave {
+  opacity: 0;
+}
+
+wf-loader-button {
+  -webkit-transition: width 0.2s;
+  transition: width 0.2s;
+}
+
+.logo-wide {
+  background-image: url('../img/logo-236x270.png');
+  background-size: 50%;
+  background-color: #394e64;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 100%;
+  height: 250px;
+  width: 250px;
+  margin: auto auto;
+  animation-duration: 10s;
+  animation-name: logo-animation;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  border: 3px solid transparent;
+}
+
+@keyframes logo-animation {
+  0% {
+    background-color: #394e64;
+    border-color: transparent;
+  }
+  50% {
+    background-color: #2f4154;
+    box-shadow: inset 0 0 20px @navbar-bg;
+  }
+  75% {
+    border-color: @secondary;
+  }
+  100% {
+    background-color: @navbar-bg;
+    border-color: #0081d3;
+    box-shadow: inset 0 0 20px @navbar-bg;
+  }
+}
+
+.light-bg {
+  background-color: @light;
+}
+
+.grey-bg {
+  background-color: @grey;
+}
+
+.padded {
+  padding: 10px 0;
+}
+
+.fc-view-container {
+  background: @light;
+}
+
+.grey-section {
+  background-color: @grey;
+  border-top: 1px solid @medium-grey;
+  padding: 15px 0;
+  margin-bottom: 20px;
+}
+
+.grey-border-bottom {
+  border-bottom: 1px solid @medium-grey;
+}
+
+.padding-bottom {
+  padding-bottom: 15px;
+}

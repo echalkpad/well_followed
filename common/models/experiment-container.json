@@ -1,0 +1,16 @@
+{
+  "name": "ExperimentContainer",
+  "description": [
+    "Represents the file system storage of the experiments"
+  ],
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {},
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

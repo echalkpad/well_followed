@@ -1,0 +1,127 @@
+<div class="form-horizontal">
+    <div ng-if="readOnly">
+        <div class="form-group">
+            <label class="control-label col-md-4">Lieu</label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.institution.type.tag + ' ' + event.institution.tag}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">Organisateur</label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.user | wfFullContactFilter}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">Date de début</label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.start | date:'dd/MM/yyyy à H:mm'}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">Date de fin</label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.end | date:'dd/MM/yyyy à H:mm'}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">Type</label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.eventType.tag}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-4">Titre</label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.title}}</p>
+            </div>
+        </div>
+        <div class="form-group" ng-if="!!event.description">
+            <label class="control-label col-md-4">Description <small>(Facultatif)</small></label>
+            <div class="col-md-8">
+                <p class="form-control-static">{{event.description}}</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!readOnly">
+        <div class="form-group has-feedback"
+             ng-class="{'has-error': eventForm.startDate.$invalid || eventForm.startTime.$invalid}">
+            <label class="control-label col-md-3">Date de début</label>
+            <div class="col-md-5">
+                <input type="date" class="form-control"
+                       name="startDate" ng-model="event.start"
+                       wf-format-date
+                       required>
+            </div>
+            <div class="col-md-4">
+                <input type="time" class="form-control"
+                       name="startTime" ng-model="event.start"
+                       wf-format-date
+                       required>
+            </div>
+            <div class="red form-error-message" ng-messages="eventForm.startDate.$error">
+                <span ng-message="required">Ce champ est requis</span>
+            </div>
+            <div class="red form-error-message" ng-messages="eventForm.startDate.$error"
+                    ng-if="eventForm.startDate.$valid">
+                <span ng-message="required">Ce champ est requis</span>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{'has-error': eventForm.end.$invalid}">
+            <label class="control-label col-md-3">Date de fin</label>
+            <div class="col-md-5">
+                <input type="date" class="form-control"
+                       name="endDate" ng-model="event.end"
+                       wf-format-date
+                       required>
+                </div>
+            <div class="col-md-4">
+                <input type="time" class="form-control"
+                       name="endTime" ng-model="event.end"
+                       wf-format-date
+                       required>
+            </div>
+            <div class="red form-error-message" ng-messages="eventForm.end.$error">
+                <span ng-message="required">Ce champ est requis</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3">Type</label>
+            <div class="col-md-9">
+                <select ng-options="et.id as et.tag for et in eventTypes"
+                        ng-model="event.eventTypeId"
+                        class="form-control"
+                        required="required"
+                        ng-disabled="readOnly"></select>
+            </div>
+        </div>
+
+        <div class="form-group has-feedback" ng-class="{'has-error': eventForm.title.$invalid}">
+            <label class="control-label col-md-3">Titre</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control"
+                       name="title" ng-model="event.title"
+                       required>
+                <div class="red form-error-message" ng-messages="eventForm.title.$error">
+                    <span ng-message="required">Ce champ est requis</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Description <small>(Facultatif)</small></label>
+            <div class="col-md-9">
+            <textarea class="form-control" ng-model="event.description"
+                      ng-disabled="readOnly">
+
+            </textarea>
+            </div>
+        </div>
+    </div>
+</div>

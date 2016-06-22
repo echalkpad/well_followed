@@ -1,0 +1,148 @@
+{
+  "name": "Event",
+  "description": [
+    "Represents calendar events"
+  ],
+  "plural": "Events",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "description": [
+        "The title that will be displayed on the calendar to indicate the event."
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": [
+        "An optional description of the event to sum it up."
+      ]
+    },
+    "start": {
+      "type": "date",
+      "required": true,
+      "description": [
+        "The start date of the event."
+      ]
+    },
+    "end": {
+      "type": "date",
+      "required": true,
+      "description": [
+        "The end date of the event."
+      ]
+    },
+    "userId": {
+      "type": "string",
+      "required": true,
+      "description": [
+        "The id of the user that created the event."
+      ]
+    },
+    "institutionId": {
+      "type": "string",
+      "required": true,
+      "description": [
+        "The id of the institution linked to the event (it's the user that created the event's institution id)."
+      ]
+    },
+    "cancelled": {
+      "type": "boolean",
+      "required": true,
+      "description": [
+        "Whether the event was cancelled or not. This attribute should be used over the suppression of the event."
+      ],
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "WfUser",
+      "foreignKey": "userId"
+    },
+    "institution": {
+      "type": "belongsTo",
+      "model": "Institution",
+      "foreignKey": "institutionId"
+    },
+    "eventType": {
+      "type": "belongsTo",
+      "model": "EventType",
+      "foreignKey": "eventTypeId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "find"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "teacher",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "teacher",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "update"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "teacher",
+      "permission": "ALLOW",
+      "property": "update"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW",
+      "property": "update"
+    }
+  ],
+  "methods": {}
+}

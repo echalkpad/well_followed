@@ -1,0 +1,58 @@
+{
+  "name": "WfUser",
+  "description": [
+    "Represents a user of the application.",
+    "There are three roles for the users: \"admin\", \"teacher\" and \"student\"."
+  ],
+  "plural": "Users",
+  "base": "User",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "institutionId": {
+      "type": "string",
+      "required": true,
+      "descrption": [
+        "The institution's id to which the user belongs."
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {
+    "institution": {
+      "type": "belongsTo",
+      "model": "Institution",
+      "foreignKey": "institutionId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__get__institution"
+    },
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "admin",
+      "permission": "ALLOW"
+    }
+  ],
+  "methods": {}
+}

@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h4>Utilisateurs</h4>
+        </div>
+        <div class="col-md-3">
+            <input type="text" ng-model="searchText"
+                   placeholder="Rechercher..."
+                   class="form-control"
+                    ng-model-options="{'debounce': 500}"
+                    ng-change="refresh(currentPage, searchText)" />
+        </div>
+    </div>
+</div>
+<div class="grey-section grey-border-bottom">
+    <div class="container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th style="width: 6%">#</th>
+                <th style="width: 28%">E-mail</th>
+                <th style="width: 28%">Nom</th>
+                <th style="width: 28%">Prénom</th>
+                <th style="width: 10%"></th>
+            </tr>
+            </thead>
+            <tbody ng-if="users !== null" class="light-bg">
+            <tr ng-repeat="u in users">
+                <td><a ui-sref="admin.user({userId: u.id})">{{$index + 1}}</a></td>
+                <td><a ui-sref="admin.user({userId: u.id})">{{u.email}}</a></td>
+                <td><a ui-sref="admin.user({userId: u.id})">{{u.lastName}}</a></td>
+                <td><a ui-sref="admin.user({userId: u.id})">{{u.firstName}}</a></td>
+                <td>
+                    <button class="btn btn-link btn-link-danger" ng-click="deleteUser(u.id)">
+                        <span class="glyphicon glyphicon-trash"></span> Supprimer
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <wf-loader ng-if="users === null"></wf-loader>
+        </div>
+        <p class="text-center top-space" ng-if="users !== null && users.length == 0">
+            Aucun utilisateur n'a été crééé.
+        </p>
+        <div class="text-center" ng-if="userCount > usersPerPage">
+            <uib-pagination total-items="userCount"
+                            items-per-page="usersPerPage"
+                            ng-model="currentPage"
+                            ng-change="refresh(currentPage, searchText)"
+                            next-text=">"
+                            previous-text="<">
+            </uib-pagination>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-5 col-md-2">
+                <!--<div class="btn-group btn-group-justified">-->
+                <!--<a class="btn btn-primary" ui-sref="admin.user">-->
+                <!--Créer un utilisateur-->
+                <!--</a>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>

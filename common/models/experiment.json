@@ -1,0 +1,164 @@
+{
+  "name": "Experiment",
+  "description": [
+    "Represents an experiment"
+  ],
+  "plural": "Experiments",
+  "base": "PersistedModel",
+  "strict": true,
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": [
+        "A name given to the experiment that will be displayed while it's in progress."
+      ]
+    },
+    "eventId": {
+      "type": "string",
+      "required": true,
+      "description": [
+        "The id of the event linked to this experiment.",
+        "In order for a user to start an experiment, he should first book an event.",
+        "An experiment should only be allowed start when an event booked for it starts."
+      ]
+    },
+    "isCurrent": {
+      "type": "boolean",
+      "required": true,
+      "description": [
+        "Indicates whether the experiment is current or not.",
+        "This property will be set to false automatically at the end of an experiment."
+      ]
+    },
+    "isPublic": {
+      "type": "boolean",
+      "required": true,
+      "description": [
+        "Indicates if the experiment should be able to be seen by all institutions or only by yours."
+      ],
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "event": {
+      "type": "belongsTo",
+      "model": "Event",
+      "foreignKey": "eventId"
+    },
+    "allowedUsers": {
+      "type": "hasMany",
+      "model": "WfUser",
+      "foreignKey": "experimentId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "findAllowed"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "findAllowed"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY",
+      "property": "countAllowed"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "countAllowed"
+    }
+  ],
+  "methods": {
+    "start": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "name",
+          "type": "string"
+        }
+      ],
+      "returns": [],
+      "description": [
+        "Starts an experiment.",
+        "This will check if an event has been booked and has already started and if the current user did book the event.",
+        "If not, an exception will be thrown and an http error will be sent."
+      ],
+      "http": {
+        "verb": "post"
+      }
+    },
+    "findAllowed": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "filter",
+          "type": "object",
+          "description": "The same type of filter that can be passed to the \"find\" method"
+        }
+      ],
+      "returns": [
+        {
+          "arg": "experiments",
+          "type": "array",
+          "root": true,
+          "description": "The experiments to which the current user is allowed to access."
+        }
+      ],
+      "description": "Find the experiments to which the current user is allowed to access.",
+      "http": [
+        {
+          "path": "/allowed",
+          "verb": "get"
+        }
+      ]
+    },
+    "countAllowed": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "where",
+          "type": "object",
+          "required": false,
+          "description": "A regular where filter",
+          "http": {
+            "source": "query"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "count",
+          "type": "number",
+          "root": false,
+          "description": ""
+        }
+      ],
+      "description": "Returns the count of experiments that the user can access.",
+      "http": [
+        {
+          "path": "/countAllowed",
+          "verb": "get"
+        }
+      ]
+    }
+  }
+}

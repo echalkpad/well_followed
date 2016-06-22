@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "mongo",
+    "public": false,
+    "options": {
+      "realmRequired": false,
+      "realmDelimiter": ":"
+    }
+  },
+  "AccessToken": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "mongo",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Role": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "WfUser": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Event": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Experiment": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "InstitutionType": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Institution": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "Sensor": {
+    "dataSource": "mongo",
+    "public": true
+  },
+  "SensorData": {
+    "dataSource": "db",
+    "public": true
+  },
+  "VideoStream": {
+    "dataSource": "db",
+    "public": true
+  },
+  "ExperimentContainer": {
+    "dataSource": "experimentStorage",
+    "public": true
+  },
+  "EventType": {
+    "dataSource": "mongo",
+    "public": true
+  }
+}
