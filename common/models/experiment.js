@@ -12,7 +12,7 @@ module.exports = function (Experiment) {
      * Ends the current experiment.
      * @returns {deferred.promise|{then, catch, finally}}
      */
-    Experiment.end = function () {
+   /* Experiment.end = function () {
         var ExperimentContainer = Experiment.app.models.ExperimentContainer,
             SensorData = Experiment.app.models.SensorData,
             Sensor = Experiment.app.models.Sensor,
@@ -24,6 +24,7 @@ module.exports = function (Experiment) {
             },
             include: 'event'
         };
+     
 
         // one csv per sensor will be saved and zipped inside a file for the experiment.
         Experiment.findOne(experimentFilter)
@@ -82,7 +83,7 @@ module.exports = function (Experiment) {
             });
 
         return deferred.promise;
-    };
+    };*/
 
     var filterExperiments = function(experiments, userInstitutionId) {
         // Workaround to filter nested properties since loopback doesn't handle it yet

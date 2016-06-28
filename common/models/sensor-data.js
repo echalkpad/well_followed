@@ -21,8 +21,9 @@ module.exports = function(SensorData) {
              * @param msg The message sent in the channel, a json formatted string.
              */
             var dispatchValue = function dispatchValue(msg) {
-		//console.log(msg.content.toString());
+		console.log(msg.content.toString());
                 var value = JSON.parse(msg.content.toString());
+		console.log(value[0]);
                 // If the value is a signal, some custom action have to be made.
                 if (value.isSignal) {
                     switch (value.value) {

@@ -2,10 +2,11 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 var fs = require('fs');
 
-//require('events').EventEmitter.prototype._maxListeners = 0;
+console.log('running');
+
 
 var app = module.exports = loopback();
-
+require('events').EventEmitter.defaultMaxListeners = Infinity;
 app.start = function() {
   // start the web server
   return app.listen(function() {

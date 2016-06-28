@@ -1,6 +1,6 @@
 var EventEmitter = require('events'),
     util = require('util');
-
+require('events').EventEmitter.prototype._maxListeners = 0;
 function VideoStreamEmitter() {
     return EventEmitter.call(this);
 }

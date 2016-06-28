@@ -97,7 +97,7 @@ angular.module('wellFollowed').directive('wfSensorNumeric', function($wfStream, 
                             y.domain([0, sensorData.value])
                         else
                             y.domain([0, 50]);*/
-			y.domain([-300, 300]);
+		              	y.domain([-300, 300]);
 
                         // push the accumulated count onto the back, and reset the count
                         data.push(sensorData.value);

@@ -2,7 +2,7 @@
 <html ng-app="wellFollowed">
   <head>
     <meta charset="UTF-8" />
-    <title>Well Followed</title>
+    <title>Well teeeeeest</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="lib/css/lib.min.css">
     <link rel="stylesheet" href="css/app.min.css">
@@ -26,6 +26,20 @@
   </head>
   <body>
     <wf-app></wf-app>
+    <script src="/usr/lib/node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script>
+    <script>
+        var socketio = io.connect('http://pi@sterne.u-strasbg.fr:45678/');
+
+        function allume() {
+            document.getElementById("input").innerHTML="test";
+            socketio.emit('led', {value : 100});
+        }
+
+        function eteint() {
+            socketio.emit('led', {value : 0});
+        }
+    </script>
+    <!--<script type="text/javascipt"></script>-->
     <script src="lib/js/lib.min.js"></script>
     <script src="lib/js/templates.js"></script>
     <script src="js/templates.js"></script>

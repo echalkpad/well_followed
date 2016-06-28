@@ -38,16 +38,17 @@ module.exports = function (app) {
                         if (experiment == null) {
                             // If no experiment is started
                             return Event.findOne(eventFilter);
-                        } else if (experiment.event().end.getTime() < new Date().getTime()) {
+                        } /*else if (experiment.event().end.getTime() < new Date().getTime()) {
                             // If the experiment is over
                             Experiment.end()
                                 .then(function () {
                                     return Event.findOne(eventFilter);
                                 });
+				console.log("okay");
                         } else {
                             // If an experiment is started and not over
                             return null;
-                        }
+                        }*/
                     })
                     .then(function (event) {
                         // If a valid event was passed through the previous promise, a new experiment needs to be launched.

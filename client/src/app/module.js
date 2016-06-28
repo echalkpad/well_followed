@@ -100,13 +100,13 @@ angular.module('wellFollowed', [
         })
 	.state('admin.experiment', {
 	    url: '/experience_a', 
-	   // template: '<wf-experiment></wf-experiment>'
-	    template: '<wf-experiment-admin></wf-experiment-admin>'
+	   template: '<wf-experiment></wf-experiment>'
+	    //template: '<wf-experiment-admin></wf-experiment-admin>'
 	})
-	.state('admin.experimentHistory', {
+	/*.state('admin.experimentHistory', {
 	    url: '/experience_a/history_a',
 	    template: '<wf-experiment-history-admin></wf-experiment-history-admin>'
-	})
+	})*/
         .state('admin.users', {
             url: '/utilisateurs',
             template: '<wf-admin-users></wf-admin-users>'
